@@ -1,0 +1,26 @@
+{
+  "name": "kross-korea-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KROSS KOREA — Telegram bot va mini ilova API",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "db:init": "node src/database/migrate.js",
+    "db:seed": "node src/database/seed.js",
+    "assets": "node scripts/make-assets.js"
+  },
+  "dependencies": {
+    "compression": "^1.8.2",
+    "express": "^5.3.0",
+    "grammy": "^1.46.0",
+    "multer": "^2.5.0",
+    "pg": "^8.23.1",
+    "sharp": "^0.35.5"
+  }
+}

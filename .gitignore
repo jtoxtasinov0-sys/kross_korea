@@ -209,3 +209,9 @@ logs/
 
 .vercel/
 next-env.d.ts
+
+# Backend rasm keshi (asl nusxalar bazada) va mijoz cheklari
+backend/uploads/
+
+# Mahsulot yuklashdan keyin ko'chirilgan rasmlar
+MAHSULOTLAR/_yuklangan/

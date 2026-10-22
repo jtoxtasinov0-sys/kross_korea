@@ -1,0 +1,574 @@
+{
+  "brand": {
+    "name": "kross_korea",
+    "tagline": "Korea Original Krossovka",
+    "logo": "logo.jpg",
+    "colors": {
+      "primary_black": "#000000",
+      "white": "#FFFFFF",
+      "accent_sale_orange_suggested": "#FF5A1F",
+      "korea_red_suggested": "#CD2E3A",
+      "korea_blue_suggested": "#0047A0"
+    },
+    "brands_sold": [
+      "Nike",
+      "Adidas",
+      "New Balance",
+      "Puma",
+      "On"
+    ],
+    "contacts": {
+      "phone_telegram_whatsapp": "+82 10 5698 5459",
+      "telegram_admin": [
+        "@krosss_korea",
+        "@bilolkhank"
+      ],
+      "telegram_channel": "https://t.me/kross_koreaa",
+      "instagram": "https://instagram.com/kross_korea",
+      "instagram_premium": "https://instagram.com/kross_korea_premium"
+    },
+    "terms": {
+      "delivery_uzbekistan": "10–20 kun",
+      "prepayment": "50%–100%",
+      "returns": "Qaytarib olinmaydi",
+      "ships_to": [
+        "O'zbekiston",
+        "Rossiya",
+        "Turkiya"
+      ],
+      "note": "Videolardagi narxlar Koreya vonida (Koreya ichidagi narx). $ narx — O'zbekiston uchun."
+    }
+  },
+  "products": [
+    {
+      "id": "01",
+      "brand": "Nike",
+      "model": "ZoomX poyga krossovkasi — yashil/ko'k",
+      "price_original_krw": null,
+      "discount": "20%",
+      "price_korea_krw": 271500,
+      "price_uzbekistan_usd": 199,
+      "image": "rasmlar/01_Nike_199usd.jpg"
+    },
+    {
+      "id": "02",
+      "brand": "Nike",
+      "model": "Retro — oq/qora",
+      "price_original_krw": null,
+      "discount": "50%",
+      "price_korea_krw": 65500,
+      "price_uzbekistan_usd": 65,
+      "image": "rasmlar/02_Nike_65usd.jpg"
+    },
+    {
+      "id": "03",
+      "brand": "Nike",
+      "model": "Yugurish — oq",
+      "price_original_krw": null,
+      "discount": "50%",
+      "price_korea_krw": 59500,
+      "price_uzbekistan_usd": 55,
+      "image": "rasmlar/03_Nike_55usd.jpg"
+    },
+    {
+      "id": "04",
+      "brand": "Nike",
+      "model": "Air Max — qora",
+      "price_original_krw": 119000,
+      "discount": "30%",
+      "price_korea_krw": 83500,
+      "price_uzbekistan_usd": 82,
+      "image": "rasmlar/04_Nike_82usd.jpg"
+    },
+    {
+      "id": "05",
+      "brand": "Nike",
+      "model": "Pegasus — oq/yashil/ko'k",
+      "price_original_krw": 169000,
+      "discount": "60%",
+      "price_korea_krw": 67500,
+      "price_uzbekistan_usd": 69,
+      "image": "rasmlar/05_Nike_69usd.jpg"
+    },
+    {
+      "id": "06",
+      "brand": "Nike",
+      "model": "ZoomX — to'q sariq",
+      "price_original_krw": 319000,
+      "discount": "50%",
+      "price_korea_krw": 159500,
+      "price_uzbekistan_usd": 129,
+      "image": "rasmlar/06_Nike_129usd.jpg"
+    },
+    {
+      "id": "07",
+      "brand": "Nike",
+      "model": "ZoomX — sariq/ko'k",
+      "price_original_krw": 219000,
+      "discount": "50%",
+      "price_korea_krw": 109500,
+      "price_uzbekistan_usd": 95,
+      "image": "rasmlar/07_Nike_95usd.jpg"
+    },
+    {
+      "id": "08",
+      "brand": "Nike",
+      "model": "Yugurish — salatrang/ko'k",
+      "price_original_krw": 289000,
+      "discount": "50%",
+      "price_korea_krw": 144500,
+      "price_uzbekistan_usd": 119,
+      "image": "rasmlar/08_Nike_119usd.jpg"
+    },
+    {
+      "id": "09",
+      "brand": "Nike",
+      "model": "Alphafly 3 (taxminiy) — oq/salatrang",
+      "price_original_krw": 359000,
+      "discount": "50%",
+      "price_korea_krw": 179500,
+      "price_uzbekistan_usd": 149,
+      "image": "rasmlar/09_Nike_149usd.jpg"
+    },
+    {
+      "id": "10",
+      "brand": "Nike",
+      "model": "Air Max Pulse — qora/oq",
+      "price_original_krw": 189000,
+      "discount": "50%",
+      "price_korea_krw": 94500,
+      "price_uzbekistan_usd": 87,
+      "image": "rasmlar/10_Nike_87usd.jpg"
+    },
+    {
+      "id": "11",
+      "brand": "Nike",
+      "model": "Air Max — oq",
+      "price_original_krw": null,
+      "discount": "60%",
+      "price_korea_krw": 89500,
+      "price_uzbekistan_usd": 85,
+      "image": "rasmlar/11_Nike_85usd.jpg"
+    },
+    {
+      "id": "12",
+      "brand": "Nike",
+      "model": "Air Max — qora/ko'k",
+      "price_original_krw": null,
+      "discount": "60%",
+      "price_korea_krw": 65500,
+      "price_uzbekistan_usd": 68,
+      "image": "rasmlar/12_Nike_68usd.jpg"
+    },
+    {
+      "id": "13",
+      "brand": "Nike",
+      "model": "Air Max — kulrang/qora/oq",
+      "price_original_krw": 129000,
+      "discount": "30%",
+      "price_korea_krw": 90500,
+      "price_uzbekistan_usd": 85,
+      "image": "rasmlar/13_Nike_85usd.jpg"
+    },
+    {
+      "id": "14",
+      "brand": "Nike",
+      "model": "To'q ko'k/oq",
+      "price_original_krw": null,
+      "discount": "50%",
+      "price_korea_krw": 55500,
+      "price_uzbekistan_usd": 52,
+      "image": "rasmlar/14_Nike_52usd.jpg"
+    },
+    {
+      "id": "15",
+      "brand": "Nike",
+      "model": "Kulrang/havorang",
+      "price_original_krw": 149000,
+      "discount": "50%",
+      "price_korea_krw": 74500,
+      "price_uzbekistan_usd": 75,
+      "image": "rasmlar/15_Nike_75usd.jpg"
+    },
+    {
+      "id": "16",
+      "brand": "Nike",
+      "model": "Qora/to'q sariq",
+      "price_original_krw": 169000,
+      "discount": "50%",
+      "price_korea_krw": 84500,
+      "price_uzbekistan_usd": 83,
+      "image": "rasmlar/16_Nike_83usd.jpg"
+    },
+    {
+      "id": "17",
+      "brand": "Nike",
+      "model": "Kulrang",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 143500,
+      "price_uzbekistan_usd": 109,
+      "image": "rasmlar/17_Nike_109usd.jpg"
+    },
+    {
+      "id": "18",
+      "brand": "Nike",
+      "model": "Air Max — oq/ko'k",
+      "price_original_krw": null,
+      "discount": "50%",
+      "price_korea_krw": 69500,
+      "price_uzbekistan_usd": 65,
+      "image": "rasmlar/18_Nike_65usd.jpg"
+    },
+    {
+      "id": "19",
+      "brand": "Nike",
+      "model": "To'q ko'k/oq",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 76500,
+      "price_uzbekistan_usd": 69,
+      "image": "rasmlar/19_Nike_69usd.jpg"
+    },
+    {
+      "id": "20",
+      "brand": "Nike",
+      "model": "Qora/oq",
+      "price_original_krw": null,
+      "discount": "40%",
+      "price_korea_krw": 84500,
+      "price_uzbekistan_usd": 79,
+      "image": "rasmlar/20_Nike_79usd.jpg"
+    },
+    {
+      "id": "21",
+      "brand": "Nike",
+      "model": "Cortez — oq/qora",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 83500,
+      "price_uzbekistan_usd": 75,
+      "image": "rasmlar/21_Nike_75usd.jpg"
+    },
+    {
+      "id": "22",
+      "brand": "Nike",
+      "model": "Air Max 2017 — oq",
+      "price_original_krw": 249000,
+      "discount": "50%",
+      "price_korea_krw": 124500,
+      "price_uzbekistan_usd": 105,
+      "image": "rasmlar/22_Nike_105usd.jpg"
+    },
+    {
+      "id": "23",
+      "brand": "Nike",
+      "model": "Cortez — kulrang",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 65500,
+      "price_uzbekistan_usd": 59,
+      "image": "rasmlar/23_Nike_59usd.jpg"
+    },
+    {
+      "id": "24",
+      "brand": "New Balance",
+      "model": "Oq/kulrang",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 169500,
+      "price_uzbekistan_usd": 139,
+      "image": "rasmlar/24_NewBalance_139usd.jpg"
+    },
+    {
+      "id": "25",
+      "brand": "New Balance",
+      "model": "1906R — ko'k/kulrang",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 149500,
+      "price_uzbekistan_usd": 129,
+      "image": "rasmlar/25_NewBalance_129usd.jpg"
+    },
+    {
+      "id": "26",
+      "brand": "New Balance",
+      "model": "530 — qora/oq",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 119500,
+      "price_uzbekistan_usd": 99,
+      "image": "rasmlar/26_NewBalance_99usd.jpg"
+    },
+    {
+      "id": "27",
+      "brand": "New Balance",
+      "model": "Qora",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 189500,
+      "price_uzbekistan_usd": 155,
+      "image": "rasmlar/27_NewBalance_155usd.jpg"
+    },
+    {
+      "id": "28",
+      "brand": "New Balance",
+      "model": "Oq",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 109500,
+      "price_uzbekistan_usd": 99,
+      "image": "rasmlar/28_NewBalance_99usd.jpg"
+    },
+    {
+      "id": "29",
+      "brand": "New Balance",
+      "model": "Qora/oq",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 109500,
+      "price_uzbekistan_usd": 99,
+      "image": "rasmlar/29_NewBalance_99usd.jpg"
+    },
+    {
+      "id": "30",
+      "brand": "New Balance",
+      "model": "Fresh Foam — qora",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 149500,
+      "price_uzbekistan_usd": 129,
+      "image": "rasmlar/30_NewBalance_129usd.jpg"
+    },
+    {
+      "id": "31",
+      "brand": "New Balance",
+      "model": "Fresh Foam — oq",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 149500,
+      "price_uzbekistan_usd": 129,
+      "image": "rasmlar/31_NewBalance_129usd.jpg"
+    },
+    {
+      "id": "32",
+      "brand": "New Balance",
+      "model": "Oq",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 169500,
+      "price_uzbekistan_usd": 146,
+      "image": "rasmlar/32_NewBalance_146usd.jpg"
+    },
+    {
+      "id": "33",
+      "brand": "Nike",
+      "model": "Sportswear — qora",
+      "price_original_krw": null,
+      "discount": "20%",
+      "price_korea_krw": 127200,
+      "price_uzbekistan_usd": 99,
+      "image": "rasmlar/33_Nike_99usd.jpg"
+    },
+    {
+      "id": "34",
+      "brand": "Nike",
+      "model": "Futbol butsasi — yashil/qizil",
+      "price_original_krw": 189000,
+      "discount": "30%",
+      "price_korea_krw": 132200,
+      "price_uzbekistan_usd": 109,
+      "image": "rasmlar/34_Nike_109usd.jpg"
+    },
+    {
+      "id": "35",
+      "brand": "Nike",
+      "model": "Futbol butsasi — jigarrang",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 230200,
+      "price_uzbekistan_usd": 159,
+      "image": "rasmlar/35_Nike_159usd.jpg"
+    },
+    {
+      "id": "36",
+      "brand": "Nike",
+      "model": "Futbol butsasi — oq/pushti",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 160200,
+      "price_uzbekistan_usd": 119,
+      "image": "rasmlar/36_Nike_119usd.jpg"
+    },
+    {
+      "id": "37",
+      "brand": "Nike",
+      "model": "Cortez — oq/qizil",
+      "price_original_krw": 119000,
+      "discount": "30%",
+      "price_korea_krw": 83200,
+      "price_uzbekistan_usd": 79,
+      "image": "rasmlar/37_Nike_79usd.jpg"
+    },
+    {
+      "id": "38",
+      "brand": "Nike",
+      "model": "Air Force 1 — pushti/qora",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 125200,
+      "price_uzbekistan_usd": 105,
+      "image": "rasmlar/38_Nike_105usd.jpg"
+    },
+    {
+      "id": "39",
+      "brand": "Nike",
+      "model": "Air Max — qora/oq",
+      "price_original_krw": 109000,
+      "discount": "30%",
+      "price_korea_krw": 76000,
+      "price_uzbekistan_usd": 79,
+      "image": "rasmlar/39_Nike_79usd.jpg"
+    },
+    {
+      "id": "40",
+      "brand": "Nike",
+      "model": "Air Max Pulse — qora/oq",
+      "price_original_krw": 189000,
+      "discount": "30%",
+      "price_korea_krw": 132000,
+      "price_uzbekistan_usd": 119,
+      "image": "rasmlar/40_Nike_119usd.jpg"
+    },
+    {
+      "id": "41",
+      "brand": "Nike",
+      "model": "ZoomX yugurish — havorang/to'q sariq",
+      "price_original_krw": 219000,
+      "discount": "20%",
+      "price_korea_krw": 175000,
+      "price_uzbekistan_usd": 145,
+      "image": "rasmlar/41_Nike_145usd.jpg"
+    },
+    {
+      "id": "42",
+      "brand": "Nike",
+      "model": "P-6000 — oq/kumush",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 97000,
+      "price_uzbekistan_usd": 92,
+      "image": "rasmlar/42_Nike_92usd.jpg"
+    },
+    {
+      "id": "43",
+      "brand": "Nike",
+      "model": "Cortez — qora/oq",
+      "price_original_krw": null,
+      "discount": "40%",
+      "price_korea_krw": 69200,
+      "price_uzbekistan_usd": 69,
+      "image": "rasmlar/43_Nike_69usd.jpg"
+    },
+    {
+      "id": "44",
+      "brand": "Nike",
+      "model": "Air Max 90 — kulrang",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 199200,
+      "price_uzbekistan_usd": 169,
+      "image": "rasmlar/44_Nike_169usd.jpg"
+    },
+    {
+      "id": "45",
+      "brand": "Nike",
+      "model": "Air Max 90 — qora/havorang",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 199200,
+      "price_uzbekistan_usd": 169,
+      "image": "rasmlar/45_Nike_169usd.jpg"
+    },
+    {
+      "id": "46",
+      "brand": "Nike",
+      "model": "Air Max 90 — qora/qizil",
+      "price_original_krw": null,
+      "discount": null,
+      "price_korea_krw": 199200,
+      "price_uzbekistan_usd": 169,
+      "image": "rasmlar/46_Nike_169usd.jpg"
+    },
+    {
+      "id": "47",
+      "brand": "Nike",
+      "model": "Air Max AP — qora/oq",
+      "price_original_krw": 139000,
+      "discount": "40%",
+      "price_korea_krw": 83200,
+      "price_uzbekistan_usd": 84,
+      "image": "rasmlar/47_Nike_84usd.jpg"
+    },
+    {
+      "id": "48",
+      "brand": "Nike",
+      "model": "Cortez — oq/qizil",
+      "price_original_krw": 119000,
+      "discount": "30%",
+      "price_korea_krw": 83200,
+      "price_uzbekistan_usd": 84,
+      "image": "rasmlar/48_Nike_84usd.jpg"
+    },
+    {
+      "id": "49",
+      "brand": "Nike",
+      "model": "Zoom Vomero — oq/qora",
+      "price_original_krw": null,
+      "discount": "15%",
+      "price_korea_krw": 160200,
+      "price_uzbekistan_usd": 129,
+      "image": "rasmlar/49_Nike_129usd.jpg"
+    },
+    {
+      "id": "50",
+      "brand": "Nike",
+      "model": "Zoom Vomero — to'q ko'k",
+      "price_original_krw": 189000,
+      "discount": "40%",
+      "price_korea_krw": 113200,
+      "price_uzbekistan_usd": 105,
+      "image": "rasmlar/50_Nike_105usd.jpg"
+    },
+    {
+      "id": "51",
+      "brand": "Nike",
+      "model": "Pegasus — oq/yashil",
+      "price_original_krw": 169000,
+      "discount": "20%",
+      "price_korea_krw": 135200,
+      "price_uzbekistan_usd": 119,
+      "image": "rasmlar/51_Nike_119usd.jpg"
+    },
+    {
+      "id": "52",
+      "brand": "Nike",
+      "model": "Motiva — qora/oq",
+      "price_original_krw": 139000,
+      "discount": "50%",
+      "price_korea_krw": 69200,
+      "price_uzbekistan_usd": 76,
+      "image": "rasmlar/52_Nike_76usd.jpg"
+    },
+    {
+      "id": "53",
+      "brand": "Nike",
+      "model": "Juniper Trail — yashil/sariq",
+      "price_original_krw": null,
+      "discount": "30%",
+      "price_korea_krw": 76200,
+      "price_uzbekistan_usd": 79,
+      "image": "rasmlar/53_Nike_79usd.jpg"
+    }
+  ]
+}
