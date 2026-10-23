@@ -1,6 +1,6 @@
 'use client';
 
-// Pastki navigatsiya: 4 tugma + o'rtada katta savat tugmasi (soni bilan)
+// Pastki navigatsiya: suzuvchi shisha panel, 4 tugma + o'rtada gradient savat tugmasi (soni bilan)
 import type { Tab } from '@/types';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { useT, type Key } from '@/lib/i18n';
@@ -40,7 +40,9 @@ export function BottomNav() {
       aria-current={tab === i.tab ? 'page' : undefined}
       onClick={() => go(i.tab)}
     >
-      <Icon name={i.icon} size={23} filled={i.tab === 'favorites' && tab === 'favorites'} />
+      <span className="nav__ico">
+        <Icon name={i.icon} size={22} filled={i.tab === 'favorites' && tab === 'favorites'} />
+      </span>
       {t(i.label)}
     </button>
   );
@@ -56,8 +58,12 @@ export function BottomNav() {
           aria-label={`${t('nav.cart')}: ${count}`}
           onClick={() => go('cart')}
         >
-          <Icon name="bag" size={27} strokeWidth={2.4} />
-          {count > 0 && <span className="nav__badge">{count > 99 ? '99+' : count}</span>}
+          <Icon name="bag" size={26} strokeWidth={2.3} />
+          {count > 0 && (
+            <span key={count} className="nav__badge">
+              {count > 99 ? '99+' : count}
+            </span>
+          )}
         </button>
       </div>
       {SIDE[1].map(item)}

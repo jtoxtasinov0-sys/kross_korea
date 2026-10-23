@@ -39,6 +39,9 @@ const uz = {
   'hero.originalSub': 'Rasmiy do‘konlardan',
   'hero.days': 'kun',
   'hero.delivery': 'yetkazish',
+  'hero.orig': 'original',
+  'hero.sale': 'chegirma',
+  'hero.models': 'model',
 
   'perk.original': '100% original',
   'perk.card': 'Karta orqali to‘lov',
@@ -243,6 +246,9 @@ const ru: Record<Key, string> = {
   'hero.originalSub': 'Из официальных магазинов',
   'hero.days': 'дней',
   'hero.delivery': 'доставка',
+  'hero.orig': 'оригинал',
+  'hero.sale': 'скидки',
+  'hero.models': 'моделей',
 
   'perk.original': '100% оригинал',
   'perk.card': 'Оплата картой',

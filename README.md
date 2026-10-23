@@ -9,24 +9,24 @@ To'lov — faqat bank kartasiga o'tkazma, har bo'lim uchun alohida karta.
 
 | # | O'q | Tanlov |
 |---|---|---|
-| 1 | Kayfiyat | **B** yorqin-yoshlarcha — qalin qora konturlar, "stiker" soyalar |
-| 2 | Shrift | **B** Unbounded + Inter (lotin + kirill) |
-| 3 | Burchaklar | **C** pill tugmalar + 16 px kartalar |
-| 4 | Bosh sahifa tepasi | **B** bento-grid (1 katta + 2 kichik blok) |
-| 5 | Navigatsiya | **B** 4 tugma + o'rtada katta savat tugmasi |
-| 6 | Mahsulot kartasi | **A** 1:1 rasm, narx rasm ustida teg |
-| 7 | Kategoriyalar | **A** doira ikonkalar tasmasi |
-| 8 | Savatga qo'shildi | **B** savat tugmasi sakraydi + zarrachalar |
-| 9 | Story | **A** vertikal 9:16 mini-kartalar |
-| 10 | Splash + tanishtiruv | **C** tanishtiruv yo'q — bo'lim tanlash ekrani + "Xush kelibsiz" kartasi |
-| 11 | Bezak | **C** geometrik diagonal chiziqlar |
-| 12 | Ikonkalar | **C** qalin 2 px, yumaloq uchlar |
-| 13 | Animatsiya | **B** tez va keskin (130–170 ms) |
-| 14 | To'lov sahifasi | **A** qog'oz chek (tishli qirra, shtrix-kod) |
-| 15 | Profil | **B** KROSS CLUB darajasi: Bronze / Silver / Gold |
+| 1 | Kayfiyat | premium yumshoq lavanda — shisha (glass) kartalar, gradientlar, jonli fon |
+| 2 | Shrift | Manrope (lotin + kirill) |
+| 3 | Burchaklar | pill tugmalar + 20–28 px kartalar |
+| 4 | Bosh sahifa tepasi | salomlashish + avatar, 3 ta shisha statistika kartasi + gradient chegirma kartasi |
+| 5 | Navigatsiya | suzuvchi shisha panel: 4 tugma + o'rtada gradient savat tugmasi |
+| 6 | Mahsulot kartasi | to'liq enli 1:1 rasm (ustida faqat kichik belgilar va yurakcha), narx va "+" rasm ostida |
+| 7 | Kategoriyalar | aylanuvchi gradient halqali doiralar |
+| 8 | Savatga qo'shildi | savat tugmasi sakraydi + rangli zarrachalar |
+| 9 | Story | vertikal 9:16 mini-kartalar, gradient chegara |
+| 10 | Splash + tanishtiruv | halqali logo + harfma-harf yozuv; tanishtiruv yo'q — bo'lim tanlash + "Xush kelibsiz" kartasi |
+| 11 | Bezak | suzuvchi rangli dog'lar (aurora), yaltiroq nur (sheen) |
+| 12 | Ikonkalar | qalin 2 px, yumaloq uchlar, rangli fon-plitkalarda |
+| 13 | Animatsiya | silliq "prujinali": kirish, ko'rinishga kirganda paydo bo'lish, sanab chiqadigan sonlar |
+| 14 | To'lov sahifasi | qog'oz chek (tishli qirra, shtrix-kod) |
+| 15 | Profil | KROSS CLUB darajasi: Bronze / Silver / Gold, golografik yaltirash |
 
-Ranglar (`frontend/src/styles/globals.css` → `:root`): to'q sariq `#FF5A1F` (urg'u, ustida qora matn),
-Koreya ko'ki `#0047A0`, Koreya qizili `#CD2E3A` (chegirma), sariq stiker `#FFD23F`, fon `#F1F2F6`.
+Ranglar (`frontend/src/styles/globals.css` → `:root`): binafsha `#6C5CE7` (urg'u, gradient `#9A8CFF → #5A72F5`),
+moviy `#4A63E8`, marjon-pushti `#E33D66` (chegirma), shaftoli `#FF7A4D`, matn `#1C1E3F`, fon lavanda `#EEF0FB`.
 
 ## Tuzilma
 

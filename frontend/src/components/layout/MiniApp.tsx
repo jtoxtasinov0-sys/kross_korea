@@ -64,7 +64,7 @@ function Shell() {
 
   return (
     <div className="app">
-      <main>
+      <main key={tab} className="tab-view">
         {tab === 'home' && <HomeView />}
         {tab === 'catalog' && <CatalogView />}
         {tab === 'cart' && <CartView />}

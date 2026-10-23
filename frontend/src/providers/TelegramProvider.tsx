@@ -35,7 +35,7 @@ export function TelegramProvider({ children }: { children: ReactNode }) {
       app.ready();
       app.expand();
       if (app.isVersionAtLeast('7.7')) app.disableVerticalSwipes?.();
-      paintTelegram('#F1F2F6', '#F1F2F6');
+      paintTelegram('#EEF0FB', '#EEF0FB');
     }
     setValue({
       ready: true,

@@ -1,21 +1,14 @@
-// Asosiy karkas: shriftlar (Unbounded + Inter), Telegram SDK, stillar
+// Asosiy karkas: shrift (Manrope), Telegram SDK, stillar
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Inter, Unbounded } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import { TelegramProvider } from '@/providers/TelegramProvider';
 import '@/styles/globals.css';
 import '@/styles/features.css';
 
-const unbounded = Unbounded({
+const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
-  weight: ['500', '700', '800', '900'],
-  variable: '--font-unbounded',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-inter',
+  variable: '--font-manrope',
   display: 'swap',
 });
 
@@ -39,13 +32,13 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: 'cover',
-  themeColor: '#f1f2f6',
+  themeColor: '#eef0fb',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // Telegram SDK yuklanishi bilan <html> ga o'z CSS o'zgaruvchilarini yozadi — bu farq kutilgan
-    <html lang="uz" className={`${unbounded.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="uz" className={manrope.variable} suppressHydrationWarning>
       <body>
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
         <TelegramProvider>{children}</TelegramProvider>

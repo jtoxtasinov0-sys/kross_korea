@@ -4,6 +4,7 @@
 import { useMemo } from 'react';
 import type { Product, Region } from '@/types';
 import { Header } from '@/components/layout/Header';
+import { Avatar } from '@/components/ui/Avatar';
 import { Icon } from '@/components/ui/Icon';
 import { ProductCard } from '@/components/features/product/ProductCard';
 import { ProductGrid } from '@/components/features/product/ProductGrid';
@@ -13,6 +14,7 @@ import { CategoryCircles } from './CategoryCircles';
 import { DealsCarousel } from './DealsCarousel';
 import { WelcomeCard } from './WelcomeCard';
 import { useT } from '@/lib/i18n';
+import { reveal } from '@/lib/reveal';
 import { discountOf } from '@/lib/utils';
 import { useCatalog } from '@/store/catalogStore';
 import { useRegion } from '@/store/prefsStore';
@@ -51,7 +53,7 @@ function Rail({ title, products, onMore }: { title: string; products: Product[];
   const t = useT();
   if (!products.length) return null;
   return (
-    <section className="section">
+    <section className="section rv" ref={reveal}>
       <div className="section__head">
         <h2 className="section__title">{title}</h2>
         {onMore && (
@@ -101,11 +103,14 @@ export function HomeView() {
     <>
       <Header />
       <div className="greet">
-        <h1 className="greet__hi">
-          {t(greetingKey())}
-          {firstName ? `, ${firstName}` : ''} 👋
-        </h1>
-        <p className="greet__sub">{t('greet.sub')}</p>
+        <div>
+          {firstName && <p className="greet__small">{t(greetingKey())}</p>}
+          <h1 className="greet__hi">
+            {firstName || t(greetingKey())} <span className="greet__wave">👋</span>
+          </h1>
+          <p className="greet__sub">{t('greet.sub')}</p>
+        </div>
+        <Avatar name={firstName} photo={tgUser?.photo_url} />
       </div>
 
       <button type="button" className="searchbar" onClick={() => openCatalog({ search: true })}>
@@ -115,20 +120,20 @@ export function HomeView() {
 
       {catalog && !catalog.settings.isOpen && <p className="closed-banner">{t('closed')}</p>}
       <WelcomeCard />
-      <HeroBento top={data.top} maxOff={data.maxOff} />
+      <HeroBento top={data.top} maxOff={data.maxOff} total={products.length} />
 
       <section className="section" style={{ marginTop: 22 }}>
         <StoryStrip />
       </section>
 
-      <section className="section">
+      <section className="section rv" ref={reveal}>
         <div className="section__head">
           <h2 className="section__title">{t('section.categories')}</h2>
         </div>
         <CategoryCircles />
       </section>
 
-      <section className="section" style={{ marginTop: 18 }}>
+      <section className="section rv" ref={reveal} style={{ marginTop: 18 }}>
         <div className="perks">
           <span className="perk">
             <Icon name="shield" size={18} /> {t('perk.original')}
@@ -143,7 +148,7 @@ export function HomeView() {
       </section>
 
       {data.deals.length > 0 && (
-        <section className="section">
+        <section className="section rv" ref={reveal}>
           <div className="section__head">
             <h2 className="section__title">{t('section.deals')}</h2>
           </div>
@@ -156,7 +161,7 @@ export function HomeView() {
 
       {data.sale.length > 0 && (
         <section className="section">
-          <div className="section__head">
+          <div className="section__head rv" ref={reveal}>
             <h2 className="section__title">{t('section.sale')}</h2>
             <button type="button" className="link-btn" onClick={() => openCatalog({ categoryId: null, sort: 'default' })}>
               {t('section.seeAll')} <Icon name="chevronRight" size={14} strokeWidth={2.8} />

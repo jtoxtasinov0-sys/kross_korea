@@ -1,6 +1,6 @@
 // "Savatga qo'shildi" effekti: savat tugmasidan rangli zarrachalar sochiladi
 
-const COLORS = ['var(--accent)', 'var(--accent-2)', 'var(--hot)', 'var(--sun)', 'var(--ink)'];
+const COLORS = ['#9a8cff', 'var(--accent)', 'var(--accent-2)', '#ff9ac6', 'var(--sun)', 'var(--peach)'];
 
 export function burstAtCart() {
   if (typeof window === 'undefined') return;
@@ -11,10 +11,10 @@ export function burstAtCart() {
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
 
-  for (let i = 0; i < 14; i += 1) {
+  for (let i = 0; i < 18; i += 1) {
     const el = document.createElement('span');
-    const angle = (Math.PI * 2 * i) / 14 + Math.random() * 0.4;
-    const dist = 46 + Math.random() * 38;
+    const angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.4;
+    const dist = 50 + Math.random() * 46;
     el.className = 'burst';
     el.style.left = `${cx - 4}px`;
     el.style.top = `${cy - 4}px`;
@@ -24,6 +24,6 @@ export function burstAtCart() {
     el.style.setProperty('--dy', `${Math.sin(angle) * dist - 20}px`);
     el.style.setProperty('--rot', `${Math.round(Math.random() * 360)}deg`);
     document.body.appendChild(el);
-    setTimeout(() => el.remove(), 600);
+    setTimeout(() => el.remove(), 740);
   }
 }
