@@ -26,9 +26,11 @@ export function rateLimit({ windowMs, max, key = (req) => req.ip, skip = () => f
   };
 }
 
-// Brauzerdan buyurtma: bitta IP'dan soatiga 5 ta (Telegram buyurtmalariga ta'sir qilmaydi)
-export const browserOrderLimit = rateLimit({
-  windowMs: 60 * 60 * 1000,
-  max: 5,
-  skip: (req) => req.via === 'telegram',
-});
+// Saytdan buyurtma (Telegram buyurtmalariga ta'sir qilmaydi): bitta mijozdan soatiga 5 ta,
+// bitta IP'dan 20 ta — mobil operatorlarda ko'p odam bitta IP bilan chiqadi
+const HOUR = 60 * 60 * 1000;
+const fromTelegram = (req) => req.via === 'telegram';
+export const browserOrderLimit = [
+  rateLimit({ windowMs: HOUR, max: 5, key: (req) => `user:${req.user.id}`, skip: fromTelegram }),
+  rateLimit({ windowMs: HOUR, max: 20, skip: fromTelegram }),
+];

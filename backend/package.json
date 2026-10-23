@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch-path=src src/index.js",
+    "dev:nobot": "node --watch-path=src scripts/dev-nobot.js",
     "db:init": "node src/database/migrate.js",
     "db:seed": "node src/database/seed.js",
     "assets": "node scripts/make-assets.js",

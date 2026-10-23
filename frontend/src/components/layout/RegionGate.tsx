@@ -6,6 +6,7 @@ import { Icon } from '@/components/ui/Icon';
 import { api } from '@/lib/api';
 import { useT } from '@/lib/i18n';
 import { haptic } from '@/lib/telegram';
+import { scrollToTop } from '@/lib/utils';
 import { useCatalog } from '@/store/catalogStore';
 import { usePrefs } from '@/store/prefsStore';
 import { useUi } from '@/store/uiStore';
@@ -22,7 +23,7 @@ export function RegionGate() {
     haptic.success();
     setRegion(region);
     useUi.getState().setTab('home');
-    window.scrollTo(0, 0);
+    scrollToTop();
     api.updateMe({ region }).catch(() => {});
   };
 

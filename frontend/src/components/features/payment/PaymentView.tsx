@@ -13,6 +13,7 @@ import { useOrder, useOrders } from '@/store/ordersStore';
 import { usePrefs } from '@/store/prefsStore';
 import { useUi } from '@/store/uiStore';
 import { Flag } from '@/components/ui/Flag';
+import { TelegramLinkCard } from '@/components/features/telegram/TelegramLinkCard';
 
 function CopyRow({ label, value, copy, sub }: { label: string; value: string; copy?: string; sub?: string }) {
   const t = useT();
@@ -49,6 +50,7 @@ export function PaymentView({ orderId, fresh }: { orderId: number; fresh?: boole
   const lang = usePrefs((s) => s.lang);
   const order = useOrder(orderId);
   const settings = useCatalog((s) => s.catalog?.settings);
+  const isWeb = useCatalog((s) => !!s.session?.user.isGuest);
   const replaceTop = useUi((s) => s.replaceTop);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
@@ -169,7 +171,8 @@ export function PaymentView({ orderId, fresh }: { orderId: number; fresh?: boole
             {t('pay.later')}
           </button>
         )}
-        {unpaid && <p className="hint">{t('pay.botHint')}</p>}
+        {/* Saytda — botga ulash kartasi (chekni botga yuborish ham shundan keyin ishlaydi) */}
+        {isWeb ? <TelegramLinkCard /> : unpaid && <p className="hint">{t('pay.botHint')}</p>}
       </div>
     </div>
   );

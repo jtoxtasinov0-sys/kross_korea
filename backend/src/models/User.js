@@ -30,6 +30,10 @@ CREATE TABLE IF NOT EXISTS addresses (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (user_id, region)
 );
+
+-- Sayt mijozi botdagi havolani bosganda — bot xabarlari shu Telegram chatga boradi
+ALTER TABLE users ADD COLUMN IF NOT EXISTS chat_id TEXT;
+CREATE INDEX IF NOT EXISTS users_chat_id_idx ON users (chat_id) WHERE chat_id IS NOT NULL;
 `;
 
 const map = (r) =>
@@ -44,10 +48,29 @@ const map = (r) =>
     region: r.region,
     isBlocked: r.is_blocked,
     isAdmin: r.is_admin || config.adminIds.includes(String(r.telegram_id)),
+    chatId: r.chat_id,
     createdAt: r.created_at,
   };
 
 export const isWebUser = (user) => String(user?.telegramId || '').startsWith('web_');
+
+/** Bot xabari qayerga ketadi: Telegram mijozi — o'z chati, sayt mijozi — bog'lagan chati (bo'lmasa null) */
+export const chatIdOf = (user) => (isWebUser(user) ? user.chatId || null : user?.telegramId || null);
+
+/** Sayt mijozini Telegram chatiga bog'lash. Faqat web_ mijoz uchun ishlaydi. */
+export async function linkChat(id, chatId) {
+  const { rows } = await query(
+    `UPDATE users SET chat_id = $2 WHERE id = $1 AND telegram_id LIKE 'web_%' RETURNING *`,
+    [id, String(chatId)],
+  );
+  return map(rows[0]);
+}
+
+/** Shu Telegram chatga bog'langan sayt mijozlari ID'lari */
+export async function webIdsByChat(chatId) {
+  const { rows } = await query('SELECT id FROM users WHERE chat_id = $1', [String(chatId)]);
+  return rows.map((r) => r.id);
+}
 
 export async function findByTelegramId(telegramId) {
   const { rows } = await query('SELECT * FROM users WHERE telegram_id = $1', [String(telegramId)]);

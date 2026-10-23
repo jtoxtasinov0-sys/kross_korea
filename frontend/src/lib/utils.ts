@@ -3,6 +3,11 @@ import type { Product, Region } from '@/types';
 
 export const cx = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ');
 
+/** Sahifani tepaga qaytarish. Aylanadigan element — body (globals.css), window.scrollTo ishlamaydi */
+export function scrollToTop() {
+  document.body.scrollTop = 0;
+}
+
 /** uz → $199   kr → ₩271,500 */
 export function formatMoney(amount: number, region: Region) {
   const n = Math.round(amount || 0);

@@ -10,18 +10,25 @@ import * as Setting from '../models/Setting.js';
 
 const REGION_LABEL = { uz: "🇺🇿 O'zbekiston", kr: '🇰🇷 Koreya' };
 
-/** Xabar yuborishda xato bo'lsa server yiqilmaydi; mijoz botni bloklagan bo'lsa belgilanadi */
+/**
+ * Xabar yuborishda xato bo'lsa server yiqilmaydi; mijoz botni bloklagan bo'lsa belgilanadi.
+ * Sayt mijoziga — faqat u botdagi havolani bosib, Telegram chatini bog'lagan bo'lsa.
+ */
 async function safeSend(user, fn) {
-  if (!bot || !user || User.isWebUser(user)) return { delivered: false };
+  const chatId = User.chatIdOf(user);
+  if (!bot || !chatId) return { delivered: false };
   try {
-    const message = await fn(user.telegramId);
+    const message = await fn(chatId);
     return { delivered: true, message };
   } catch (err) {
-    if (err?.error_code === 403) await User.update(user.id, { isBlocked: true }).catch(() => {});
-    logger.warn(`Xabar yetmadi (${user.telegramId}):`, err?.description || err.message);
+    if (err?.error_code === 403 && !User.isWebUser(user)) await User.update(user.id, { isBlocked: true }).catch(() => {});
+    logger.warn(`Xabar yetmadi (${chatId}):`, err?.description || err.message);
     return { delivered: false };
   }
 }
+
+const keyboardFor = (user, lang, settings, order) =>
+  orderKeyboard(lang, settings, order, { inApp: !User.isWebUser(user) });
 
 const itemLines = (order, lang) =>
   order.items
@@ -39,7 +46,9 @@ const prepayLine = (order, lang) =>
 function adminSummary(order, user) {
   const address = [order.city, order.street, order.detail, order.zipCode].filter(Boolean).map(escapeHtml).join(', ');
   return (
-    `${REGION_LABEL[order.region]} · № <code>${order.orderNumber}</code>\n\n` +
+    `${REGION_LABEL[order.region]} · № <code>${order.orderNumber}</code>\n` +
+    (User.isWebUser(user) ? '🌐 Saytdan berilgan\n' : '') +
+    '\n' +
     `👤 ${escapeHtml(order.customerName)}${user?.username ? ` (@${escapeHtml(user.username)})` : ''}\n` +
     `📞 <code>${escapeHtml(order.phone)}</code>\n` +
     `📍 ${address}\n` +
@@ -60,13 +69,14 @@ async function eachAdmin(fn) {
   }
 }
 
-export async function orderCreated(order, user) {
-  if (!bot) return;
+/** Mijozga buyurtma tarkibi va to'lov rekvizitlari (sayt mijozi botga ulanganda ham shu yuboriladi) */
+export async function orderDetails(order, user) {
+  if (!bot) return { delivered: false };
   const settings = await Setting.get();
   const rules = Setting.regionRules(settings, order.region);
   const lang = user?.language;
 
-  await safeSend(user, (chatId) =>
+  return safeSend(user, (chatId) =>
     bot.api.sendMessage(
       chatId,
       t(lang, 'orderCreated', {
@@ -78,9 +88,14 @@ export async function orderCreated(order, user) {
         card: escapeHtml(rules.card),
         holder: escapeHtml(rules.holder),
       }),
-      { parse_mode: 'HTML', reply_markup: orderKeyboard(lang, settings, order) },
+      { parse_mode: 'HTML', reply_markup: keyboardFor(user, lang, settings, order) },
     ),
   );
+}
+
+export async function orderCreated(order, user) {
+  if (!bot) return;
+  await orderDetails(order, user);
 
   const panel = await adminPanelUrl();
   await eachAdmin((chatId) =>
@@ -132,7 +147,7 @@ export async function statusChanged(order) {
     bot.api.sendMessage(
       chatId,
       t(lang, key, { number: order.orderNumber, tracking: order.trackingNumber && escapeHtml(order.trackingNumber) }),
-      { parse_mode: 'HTML', reply_markup: orderKeyboard(lang, settings, order) },
+      { parse_mode: 'HTML', reply_markup: keyboardFor(user, lang, settings, order) },
     ),
   );
 }

@@ -30,11 +30,14 @@ export function contactKeyboard(lang, settings) {
     .text(t(lang, 'btnBack'), 'menu:home');
 }
 
-/** Holat xabarlari ostidagi tugmalar: ilovada ochish + savol berish */
-export function orderKeyboard(lang, settings, order) {
+/**
+ * Holat xabarlari ostidagi tugmalar: ilovada ochish + savol berish.
+ * Saytdan berilgan buyurtma mini ilovada ko'rinmaydi (u yerda mijoz — Telegram akkaunti), shuning uchun inApp: false.
+ */
+export function orderKeyboard(lang, settings, order, { inApp = true } = {}) {
   const kb = new InlineKeyboard();
   const app = webAppUrl();
-  if (app) kb.webApp(t(lang, 'btnOrders'), `${app}?order=${order.id}`).row();
+  if (app && inApp) kb.webApp(t(lang, 'btnOrders'), `${app}?order=${order.id}`).row();
   kb.url(t(lang, 'btnAsk'), tgLink(settings.support_username));
   return kb;
 }

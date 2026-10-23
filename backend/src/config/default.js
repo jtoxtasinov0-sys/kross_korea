@@ -38,7 +38,6 @@ export const config = {
   webAppUrl: httpsUrl(env.WEB_APP_URL) || DEFAULT_WEB_APP_URL,
   // Render tashqi manzilni o'zi beradi (RENDER_EXTERNAL_URL) — PUBLIC_URL shart emas
   publicUrl: (env.PUBLIC_URL || env.RENDER_EXTERNAL_URL || '').replace(/\/$/, ''),
-  browserAccess: bool(env.BROWSER_ACCESS, true),
   skipInitDataCheck: bool(env.SKIP_INITDATA_CHECK),
   devTelegramId: env.DEV_TELEGRAM_ID || '1000001',
   uploadsDir: env.UPLOADS_DIR || path.join(ROOT, 'uploads'),

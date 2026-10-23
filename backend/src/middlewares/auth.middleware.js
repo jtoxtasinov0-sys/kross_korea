@@ -46,7 +46,8 @@ export async function telegramAuth(req, res, next) {
 
   const guestId = req.get('x-guest-id');
   if (guestId && GUEST_RE.test(guestId)) {
-    if (!config.browserAccess) throw new HttpError(403, 'browser_closed');
+    // Saytda ochiq yoki yo'q — admin panel sozlamasi
+    if (!(await Setting.get()).browser_access) throw new HttpError(403, 'browser_closed');
     req.user = await User.upsertGuest(guestId);
     req.via = 'browser';
     return next();

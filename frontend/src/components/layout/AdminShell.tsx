@@ -13,7 +13,7 @@ import { ProductsAdmin } from '@/components/features/admin/ProductsAdmin';
 import { StockAdmin } from '@/components/features/admin/StockAdmin';
 import { SettingsAdmin } from '@/components/features/admin/SettingsAdmin';
 import { adminApi, AdminApiError } from '@/lib/adminApi';
-import { cx } from '@/lib/utils';
+import { cx, scrollToTop } from '@/lib/utils';
 import { useTelegram } from '@/hooks/useTelegram';
 import { useAdmin } from '@/store/adminStore';
 
@@ -46,7 +46,7 @@ function Shell() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToTop();
   }, [section]);
 
   return (

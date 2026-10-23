@@ -206,6 +206,13 @@ const uz = {
   'bot.title': 'Do‘kon Telegram ichida ishlaydi',
   'bot.sub': 'Botni oching va "Do‘konni ochish" tugmasini bosing',
   'bot.open': 'Botni ochish',
+
+  'tg.title': 'Telegram’da kuzating',
+  'tg.sub': 'Buyurtma holati, to‘lov tasdig‘i va kuzatuv raqami botga keladi',
+  'tg.connect': 'Ulash',
+  'tg.onTitle': 'Telegram ulangan ✓',
+  'tg.onSub': 'Xabarlar botga keladi. Chekni botga rasm qilib yuborsangiz ham bo‘ladi',
+  'tg.open': 'Ochish',
 };
 
 export type Key = keyof typeof uz;
@@ -413,6 +420,13 @@ const ru: Record<Key, string> = {
   'bot.title': 'Магазин работает внутри Telegram',
   'bot.sub': 'Откройте бота и нажмите «Открыть магазин»',
   'bot.open': 'Открыть бота',
+
+  'tg.title': 'Следите в Telegram',
+  'tg.sub': 'Статус заказа, подтверждение оплаты и трек-номер придут в бот',
+  'tg.connect': 'Подключить',
+  'tg.onTitle': 'Telegram подключён ✓',
+  'tg.onSub': 'Уведомления приходят в бот. Чек можно отправить туда фотографией',
+  'tg.open': 'Открыть',
 };
 
 const dict: Record<Lang, Record<Key, string>> = { uz, ru };
