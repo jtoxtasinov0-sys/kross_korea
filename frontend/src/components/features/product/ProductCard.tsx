@@ -14,6 +14,7 @@ import { pick, useT } from '@/lib/i18n';
 import { colorDots } from '@/lib/colors';
 import { haptic } from '@/lib/telegram';
 import { LOW_STOCK } from '@/lib/constants';
+import { reveal } from '@/lib/reveal';
 import { cx, discountOf, formatMoney, oldPriceOf, priceOf } from '@/lib/utils';
 
 interface Props {
@@ -48,7 +49,7 @@ function ProductCardBase({ product, eager }: Props) {
   };
 
   return (
-    <article className={cx('pcard', !product.inStock && 'pcard--out')}>
+    <article className={cx('pcard rv', !product.inStock && 'pcard--out')} ref={reveal}>
       <div className="pcard__mediawrap">
         <button type="button" className="pcard__media" onClick={open} aria-label={`${product.brand} ${name}`}>
           <Img src={product.images} width={480} alt="" eager={eager} />

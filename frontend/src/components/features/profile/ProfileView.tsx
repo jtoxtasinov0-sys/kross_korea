@@ -9,6 +9,7 @@ import { pick, useT } from '@/lib/i18n';
 import { APP_VERSION, TIERS } from '@/lib/constants';
 import { haptic } from '@/lib/telegram';
 import { cx } from '@/lib/utils';
+import { useCountUp } from '@/hooks/useCountUp';
 import { useTelegram } from '@/hooks/useTelegram';
 import { useCatalog } from '@/store/catalogStore';
 import { useFavStore } from '@/store/favStore';
@@ -46,6 +47,11 @@ function TierCard({ name, purchases }: { name: string; purchases: number }) {
       </div>
     </section>
   );
+}
+
+/** Statistika soni — 0 dan sanab chiqadi */
+function Num({ n, delay }: { n: number; delay: number }) {
+  return <b>{useCountUp(n, 900, delay)}</b>;
 }
 
 function MenuItem({ icon, label, value, onClick, children }: { icon: IconName; label: string; value?: ReactNode; onClick?: () => void; children?: ReactNode }) {
@@ -108,15 +114,15 @@ export function ProfileView() {
 
       <div className="stats">
         <div className="stat">
-          <b>{purchases}</b>
+          <Num n={purchases} delay={250} />
           <span>{t('profile.orders')}</span>
         </div>
         <div className="stat">
-          <b>{favCount}</b>
+          <Num n={favCount} delay={320} />
           <span>{t('profile.favorites')}</span>
         </div>
         <div className="stat">
-          <b>{session?.stats.delivered ?? 0}</b>
+          <Num n={session?.stats.delivered ?? 0} delay={390} />
           <span>{t('profile.delivered')}</span>
         </div>
       </div>
