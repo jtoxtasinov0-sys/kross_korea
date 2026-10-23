@@ -46,6 +46,7 @@ const RULES = {
   aboutRu: (v) => cleanLines(v, 1000),
   isOpen: (v) => (typeof v === 'boolean' ? v : undefined),
   stockVisible: (v) => (typeof v === 'boolean' ? v : undefined),
+  browserAccess: (v) => (typeof v === 'boolean' ? v : undefined),
 };
 
 export async function get(req, res) {

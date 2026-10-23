@@ -37,6 +37,10 @@ export default {
     "Savolingizni yozing — tez javob beramiz. O'zbek va rus tilida gaplashamiz!",
   btnWhatsapp: '🟢 WhatsApp',
 
+  webLinked: ({ count }) =>
+    `✅ <b>Saytdagi akkauntingiz ulandi!</b>\n\n` +
+    "Buyurtma holati, to'lov tasdig'i va kuzatuv raqami endi shu chatga keladi. " +
+    (count ? "Chekni rasm qilib shu yerga tashlasangiz ham bo'ladi 📸" : "Saytda buyurtma bersangiz — shu yerda xabar olasiz 👟"),
   noOrders: "Hali buyurtma yo'q. Do'konni ochib, birinchi juftlikni tanlang 👟",
   ordersTitle: '📦 <b>Oxirgi buyurtmalaringiz</b>',
 

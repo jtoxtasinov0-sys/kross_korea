@@ -8,6 +8,7 @@ import { escapeHtml } from '../utils/format.js';
 import { t, statusText } from '../locales/index.js';
 import * as Order from '../models/Order.js';
 import * as Setting from '../models/Setting.js';
+import * as User from '../models/User.js';
 
 const IMAGE_MIME = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
@@ -25,7 +26,8 @@ export async function onReceipt(ctx) {
   if (doc && !IMAGE_MIME.has(doc.mime_type)) return;
 
   const user = ctx.user;
-  const order = await Order.latestUnpaid(user.id);
+  // Saytdan berib, shu chatni bog'lagan bo'lsa — o'sha buyurtmalar ham hisobga olinadi
+  const order = await Order.latestUnpaid([user.id, ...(await User.webIdsByChat(user.telegramId))]);
   if (!order) {
     const settings = await Setting.get();
     return ctx.reply(t(user.language, 'receiptNoOrder', { phone: escapeHtml(settings.phone) }), { parse_mode: 'HTML' });

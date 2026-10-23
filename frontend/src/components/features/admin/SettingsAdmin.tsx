@@ -129,6 +129,12 @@ export function SettingsAdmin() {
             <Icon name="bag" size={18} /> Do‘kon
           </h2>
           <Switch checked={draft.isOpen} onChange={(v) => set('isOpen', v)} label="Do‘kon ochiq" hint="Yopiq bo‘lsa mijozlar buyurtma bera olmaydi" />
+          <Switch
+            checked={draft.browserAccess}
+            onChange={(v) => set('browserAccess', v)}
+            label="Saytda ham ishlasin"
+            hint="O‘chiq bo‘lsa sayt faqat botni ochishni taklif qiladi — buyurtma faqat Telegram ichida"
+          />
           {text('shopName', 'Do‘kon nomi')}
           {text('phone', 'Aloqa telefoni (Telegram / WhatsApp)')}
           {text('supportUsername', 'Yordam uchun Telegram username')}

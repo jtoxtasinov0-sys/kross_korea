@@ -4,7 +4,9 @@ import path from 'node:path';
 import { InputFile } from 'grammy';
 import { config } from '../config/default.js';
 import { webAppUrl } from '../core/bot.js';
+import * as notify from '../core/notify.js';
 import { logger } from '../utils/logger.js';
+import { parseLinkCode } from '../utils/token.js';
 import { escapeHtml, money, formatDate } from '../utils/format.js';
 import { mainMenu, phoneKeyboard, contactKeyboard } from '../utils/keyboards.js';
 import { t, statusText } from '../locales/index.js';
@@ -38,11 +40,42 @@ async function sendMenu(ctx, user) {
 
 export async function onStart(ctx) {
   const user = ctx.user;
+  // Saytdan kelgan havola: t.me/<bot>?start=w<id>_<imzo>
+  const webId = parseLinkCode(ctx.match, config.botToken);
+  if (webId && (await linkWebUser(ctx, webId))) return;
+
   await sendMenu(ctx, user);
   if (!user.phone) {
     await ctx.reply(t(user.language, 'askPhone'), { reply_markup: phoneKeyboard(user.language) });
   }
 }
+
+/**
+ * Sayt mijozini shu chatga bog'lash: endi buyurtma holati, chek tasdig'i shu yerga keladi,
+ * chekni esa rasm qilib shu chatga tashlasa bo'ladi. To'lanmagan buyurtma bo'lsa — rekvizitlar qayta yuboriladi.
+ */
+async function linkWebUser(ctx, webId) {
+  const web = await User.linkChat(webId, ctx.chat.id);
+  if (!web) return false;
+  const lang = web.language;
+  const orders = await Order.listByUser(web.id, 5);
+  await ctx.reply(t(lang, 'webLinked', { count: orders.length }), { parse_mode: 'HTML' });
+  const unpaid = orders.find((o) => o.status === 'PENDING_PAYMENT');
+  if (unpaid) await notify.orderDetails(unpaid, web);
+  else if (orders.length) await ctx.reply(ordersText(lang, orders), { parse_mode: 'HTML' });
+  return true;
+}
+
+const ordersText = (lang, orders) =>
+  `${t(lang, 'ordersTitle')}\n\n` +
+  orders
+    .map(
+      (o) =>
+        `<code>${o.orderNumber}</code> · ${formatDate(o.createdAt, lang)}\n` +
+        `${money(o.total, o.region)} — ${statusText(lang, o.status)}` +
+        (o.trackingNumber ? `\n📮 <code>${escapeHtml(o.trackingNumber)}</code>` : ''),
+    )
+    .join('\n\n');
 
 /** Til tugmasi — yangi xabar emas, shu xabarning o'zi o'giriladi */
 export async function onLang(ctx) {
@@ -79,15 +112,11 @@ export async function onContact(ctx) {
 export async function onOrders(ctx) {
   await ctx.answerCallbackQuery();
   const lang = ctx.user.language;
-  const orders = await Order.listByUser(ctx.user.id, 5);
+  // Mini ilovadagi buyurtmalar + shu chatga bog'langan saytdagi buyurtmalar
+  const ids = [ctx.user.id, ...(await User.webIdsByChat(ctx.user.telegramId))];
+  const orders = await Order.listByUser(ids, 5);
   if (!orders.length) return ctx.reply(t(lang, 'noOrders'));
-  const lines = orders.map(
-    (o) =>
-      `<code>${o.orderNumber}</code> · ${formatDate(o.createdAt, lang)}\n` +
-      `${money(o.total, o.region)} — ${statusText(lang, o.status)}` +
-      (o.trackingNumber ? `\n📮 <code>${escapeHtml(o.trackingNumber)}</code>` : ''),
-  );
-  return ctx.reply(`${t(lang, 'ordersTitle')}\n\n${lines.join('\n\n')}`, { parse_mode: 'HTML' });
+  return ctx.reply(ordersText(lang, orders), { parse_mode: 'HTML' });
 }
 
 /** request_contact tugmasi orqali kelgan raqam — faqat o'ziniki qabul qilinadi */

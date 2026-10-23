@@ -16,6 +16,7 @@ import { useFavStore } from '@/store/favStore';
 import { usePrefs } from '@/store/prefsStore';
 import { useUi } from '@/store/uiStore';
 import { Flag } from '@/components/ui/Flag';
+import { TelegramLinkCard } from '@/components/features/telegram/TelegramLinkCard';
 
 function TierCard({ name, purchases }: { name: string; purchases: number }) {
   const t = useT();
@@ -126,6 +127,8 @@ export function ProfileView() {
           <span>{t('profile.delivered')}</span>
         </div>
       </div>
+
+      <TelegramLinkCard />
 
       <div className="menu">
         <MenuItem icon="box" label={t('orders.title')} onClick={() => push({ kind: 'orders' })} />

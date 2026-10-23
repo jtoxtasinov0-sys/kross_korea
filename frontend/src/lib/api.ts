@@ -49,10 +49,17 @@ async function request<T>(path: string, init: { method?: string; json?: unknown;
   return data as T;
 }
 
+/** Sayt mijozi: bot havolasi (bosilsa xabarlar shu Telegram'ga keladi). Telegram ichida — null */
+export interface TelegramLink {
+  url: string;
+  linked: boolean;
+}
+
 export interface AuthResponse {
   user: User;
   stats: { total: number; delivered: number };
   addresses: Record<Region, SavedAddress | null>;
+  telegram: TelegramLink | null;
 }
 
 export interface NewOrder {

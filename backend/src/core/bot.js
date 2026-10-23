@@ -2,6 +2,7 @@
 import { Bot } from 'grammy';
 import { config } from '../config/default.js';
 import { logger } from '../utils/logger.js';
+import { linkCode } from '../utils/token.js';
 import * as Setting from '../models/Setting.js';
 
 export const bot = config.botToken ? new Bot(config.botToken) : null;
@@ -21,3 +22,6 @@ export async function adminPanelUrl() {
 // botInfo faqat bot.init() dan keyin bor — undan oldin murojaat xato beradi
 export const botUsername = () => (bot?.isInited() ? bot.botInfo.username : '');
 export const botLink = () => (botUsername() ? `https://t.me/${botUsername()}` : '');
+
+/** Sayt mijozi bosadigan havola: bot ochiladi va xabarlar shu Telegram chatga keladigan bo'ladi */
+export const webLinkUrl = (userId) => (botLink() ? `${botLink()}?start=${linkCode(userId, config.botToken)}` : '');

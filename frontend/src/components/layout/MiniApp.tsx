@@ -22,6 +22,7 @@ import { ContactSheet } from '@/components/features/contact/ContactSheet';
 import { useTelegram } from '@/hooks/useTelegram';
 import { useBackButton } from '@/hooks/useBackButton';
 import { useT } from '@/lib/i18n';
+import { scrollToTop } from '@/lib/utils';
 import { useCatalog } from '@/store/catalogStore';
 import { usePrefs } from '@/store/prefsStore';
 import { useUi, type Layer } from '@/store/uiStore';
@@ -54,7 +55,7 @@ function Shell() {
 
   // Tab almashganda — tepaga
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToTop();
   }, [tab]);
 
   // Oyna ochiq bo'lsa orqadagi sahifa aylanmasin
@@ -116,12 +117,14 @@ export function MiniApp() {
     else if (product) useUi.getState().openProduct(Number(product));
   }, [status, region, handledLinks, tg.startParam]);
 
-  // Ilovaga qaytilganda katalog jimgina yangilanadi
+  // Ilovaga qaytilganda katalog jimgina yangilanadi.
+  // Saytda: botga ulanib qaytgan bo'lishi mumkin — sessiya ham (Telegram kartasi "ulangan" bo'lsin)
   useEffect(() => {
     const onVisible = () => {
-      if (document.visibilityState === 'visible' && useCatalog.getState().status === 'ready') {
-        useCatalog.getState().refresh();
-      }
+      const state = useCatalog.getState();
+      if (document.visibilityState !== 'visible' || state.status !== 'ready') return;
+      state.refresh();
+      if (state.session?.telegram && !state.session.telegram.linked) state.refreshSession();
     };
     document.addEventListener('visibilitychange', onVisible);
     return () => document.removeEventListener('visibilitychange', onVisible);

@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS settings (
   stock_visible          BOOLEAN NOT NULL DEFAULT false,
   updated_at             TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- Keyin qo'shilgan ustunlar (eski bazalarda ham paydo bo'lishi uchun)
+ALTER TABLE settings ADD COLUMN IF NOT EXISTS browser_access BOOLEAN NOT NULL DEFAULT true; -- saytda (brauzerda) ham ochiq
 INSERT INTO settings (id) VALUES (1) ON CONFLICT (id) DO NOTHING;
 `;
 
@@ -132,6 +134,7 @@ export const EDITABLE = {
   aboutRu: 'about_ru',
   isOpen: 'is_open',
   stockVisible: 'stock_visible',
+  browserAccess: 'browser_access',
 };
 
 /** Admin uchun to'liq ko'rinish (parol ham) */

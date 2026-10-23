@@ -85,11 +85,19 @@
   box-sizing: border-box;
 }
 
+/* Sahifa hujjatning o'zi emas, body ichida aylanadi. Aks holda telefonda (Telegram iOS "prujinasi",
+   brauzer manzil satrining yashirinib-chiqishi) aylantirganda pastki panel tepaga-pastga siljiydi.
+   Shuning uchun tepaga qaytarish — document.body.scrollTop (lib/utils: scrollToTop) */
 html {
+  height: 100%;
+  overflow: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   margin: 0;
   background: var(--bg);
   color: var(--ink);
@@ -349,6 +357,7 @@ a {
   font-weight: 800;
   font-size: 15px;
   letter-spacing: -0.01em;
+  text-decoration: none; /* <a class="btn"> ham tugmadek ko'rinsin */
   transition:
     transform var(--t-fast) var(--ease),
     box-shadow var(--t-med) var(--ease),

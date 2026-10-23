@@ -2499,6 +2499,76 @@
   text-align: center;
 }
 
+/* ---------- Saytda: "Xabarlarni Telegram'da oling" kartasi (to'lov va profil) ---------- */
+.tg-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px var(--gutter) 0;
+  padding: 14px;
+  border-radius: var(--r-card);
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--shadow-1);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  animation: rise 600ms var(--ease) backwards 320ms;
+}
+
+.pay-actions .tg-link {
+  margin: 4px 0 0;
+}
+
+.tg-link__ico {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  /* Telegram'ning tanish moviy rangi — nima haqida ekani bir qarashda bilinsin */
+  background: linear-gradient(135deg, #37bbfe, #2a9de0);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(42, 157, 224, 0.32);
+}
+
+.tg-link__ico svg {
+  transform: translateX(-1px);
+}
+
+.tg-link--on .tg-link__ico {
+  background: var(--ok);
+  box-shadow: 0 8px 18px rgba(15, 157, 104, 0.28);
+}
+
+.tg-link--on .tg-link__ico svg {
+  transform: none;
+}
+
+.tg-link__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tg-link__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14.5px;
+  letter-spacing: -0.01em;
+}
+
+.tg-link__sub {
+  margin-top: 2px;
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.tg-link .btn {
+  flex-shrink: 0;
+}
+
 /* ---------- Buyurtmalarim ---------- */
 .ocard {
   margin: 0 var(--gutter) 12px;

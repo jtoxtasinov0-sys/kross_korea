@@ -67,18 +67,19 @@ export async function findById(id) {
   return map(rows[0]);
 }
 
-export async function listByUser(userId, limit = 30) {
-  const { rows } = await query('SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC LIMIT $2', [
-    userId,
+// userIds — bitta ID yoki ro'yxat (botda: Telegram mijozi + unga bog'langan sayt mijozlari)
+export async function listByUser(userIds, limit = 30) {
+  const { rows } = await query('SELECT * FROM orders WHERE user_id = ANY($1) ORDER BY created_at DESC LIMIT $2', [
+    [].concat(userIds),
     limit,
   ]);
   return rows.map(map);
 }
 
-export async function latestUnpaid(userId) {
+export async function latestUnpaid(userIds) {
   const { rows } = await query(
-    `SELECT * FROM orders WHERE user_id = $1 AND status = ANY($2) ORDER BY created_at DESC LIMIT 1`,
-    [userId, UNPAID],
+    `SELECT * FROM orders WHERE user_id = ANY($1) AND status = ANY($2) ORDER BY created_at DESC LIMIT 1`,
+    [[].concat(userIds), UNPAID],
   );
   return map(rows[0]);
 }

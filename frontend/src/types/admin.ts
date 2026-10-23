@@ -81,6 +81,7 @@ export interface AdminSettings {
   aboutRu: string | null;
   isOpen: boolean;
   stockVisible: boolean;
+  browserAccess: boolean;
   testCards: Record<Region, boolean>;
   updatedAt: string;
 }

@@ -1,5 +1,5 @@
 // Katalog: kategoriyalar, mahsulotlar, storylar, eng ko'p sotilganlar va ochiq sozlamalar — bitta so'rovda
-import { SHOP, config } from '../config/default.js';
+import { SHOP } from '../config/default.js';
 import { cached } from '../core/cache.js';
 import { botLink } from '../core/bot.js';
 import { HttpError } from '../middlewares/error.middleware.js';
@@ -56,6 +56,7 @@ export async function getProduct(req, res) {
 }
 
 /** Himoyasiz: brauzerda ochish mumkinmi va bot havolasi */
-export function getAccess(req, res) {
-  res.json({ browserAccess: config.browserAccess, botUrl: botLink() });
+export async function getAccess(req, res) {
+  const settings = await Setting.get();
+  res.json({ browserAccess: settings.browser_access, botUrl: botLink() });
 }
