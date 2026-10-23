@@ -989,7 +989,7 @@
   background: var(--accent);
 }
 
-/* ---------- Mahsulot kartasi: ichki yumaloq rasm, narx rasm ustida shisha teg ---------- */
+/* ---------- Mahsulot kartasi: to'liq enli rasm, narx va "+" rasm ostida ---------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1029,16 +1029,15 @@
 
 .pcard__mediawrap {
   position: relative;
-  padding: 6px 6px 0;
 }
 
+/* Rasm kartaning to'liq eniga — ustida faqat kichik belgilar va yurakcha */
 .pcard__media {
   position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 15px;
   background: var(--surface-2);
 }
 
@@ -1051,57 +1050,60 @@
   position: absolute;
   top: 8px;
   left: 8px;
+  right: 46px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: 5px;
+  gap: 4px;
   pointer-events: none;
 }
 
 .badge-off {
-  padding: 4px 9px;
+  padding: 3px 7px;
   border-radius: var(--pill);
   background: var(--grad-hot);
   color: var(--on-hot);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 11px;
-  box-shadow: 0 4px 10px rgba(227, 61, 102, 0.3);
+  font-size: 10.5px;
+  box-shadow: 0 3px 8px rgba(227, 61, 102, 0.28);
 }
 
 .badge-out {
-  padding: 4px 9px;
+  padding: 3px 7px;
   border-radius: var(--pill);
   background: rgba(28, 30, 63, 0.82);
   color: var(--on-dark);
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 10px;
 }
 
 .sticker {
-  padding: 4px 9px;
+  padding: 3px 7px;
   border-radius: var(--pill);
   background: var(--grad);
   color: var(--on-accent);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 10px;
+  font-size: 9.5px;
   letter-spacing: 0.08em;
-  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.32);
+  box-shadow: 0 3px 8px rgba(108, 92, 231, 0.3);
 }
 
 .pcard__fav {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 34px;
-  height: 34px;
+  top: 7px;
+  right: 7px;
+  width: 31px;
+  height: 31px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   color: var(--ink-2);
-  box-shadow: 0 4px 12px rgba(28, 30, 63, 0.12);
+  box-shadow: 0 3px 10px rgba(28, 30, 63, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   transition:
     transform var(--t-med) var(--spring),
     color 200ms;
@@ -1119,48 +1121,13 @@
   animation: heart-pop 520ms var(--spring);
 }
 
-.price-tag {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  padding: 5px 10px;
-  border-radius: var(--pill);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--ink);
-  box-shadow: 0 4px 14px rgba(28, 30, 63, 0.14);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 13px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-.pcard__plus {
-  position: absolute;
-  right: 14px;
-  bottom: 8px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--grad);
-  color: var(--on-accent);
-  box-shadow: 0 8px 18px rgba(108, 92, 231, 0.42);
-  transition: transform var(--t-med) var(--spring);
-}
-
-.pcard__plus:active {
-  transform: scale(0.8) rotate(90deg);
-}
-
 .pcard__body {
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 10px 12px 12px;
+  padding: 10px 12px 0;
   text-align: left;
 }
 
@@ -1188,7 +1155,51 @@
   justify-content: space-between;
   gap: 6px;
   margin-top: auto;
-  padding-top: 7px;
+  padding-top: 6px;
+}
+
+/* Narx + tezkor "+" — rasm ostida */
+.pcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 10px 10px 12px;
+}
+
+.pcard__price {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.pcard__price b {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.pcard__price .old {
+  font-size: 11.5px;
+}
+
+.pcard__plus {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--grad);
+  color: var(--on-accent);
+  box-shadow: 0 6px 16px rgba(108, 92, 231, 0.4);
+  transition: transform var(--t-med) var(--spring);
+}
+
+.pcard__plus:active {
+  transform: scale(0.8) rotate(90deg);
 }
 
 .color-dots {
@@ -1216,11 +1227,6 @@
   color: var(--warn);
   font-size: 11.5px;
   font-weight: 800;
-}
-
-.pcard--skel .pcard__media {
-  width: auto;
-  margin: 6px 6px 0;
 }
 
 .pcard--skel .skel-line {

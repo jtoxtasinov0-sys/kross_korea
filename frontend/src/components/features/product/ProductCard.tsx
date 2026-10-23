@@ -1,6 +1,6 @@
 'use client';
 
-// Mahsulot kartasi: 1:1 rasm, narx rasm ustida teg, chegirma/NEW belgilari, sevimli va tezkor "+"
+// Mahsulot kartasi: to'liq enli 1:1 rasm, chegirma/NEW belgilari, sevimli; narx va tezkor "+" rasm ostida
 import { memo } from 'react';
 import type { Product } from '@/types';
 import { Icon } from '@/components/ui/Icon';
@@ -58,7 +58,6 @@ function ProductCardBase({ product, eager }: Props) {
             {product.isNew && <span className="sticker">NEW</span>}
             {!product.inStock && <span className="badge-out">{t('card.soldOut')}</span>}
           </span>
-          <span className="price-tag">{formatMoney(price, region)}</span>
         </button>
         <button
           type="button"
@@ -70,13 +69,8 @@ function ProductCardBase({ product, eager }: Props) {
             toggleFav(product.id);
           }}
         >
-          <Icon name="heart" size={18} filled={fav} />
+          <Icon name="heart" size={17} filled={fav} />
         </button>
-        {product.inStock && (
-          <button type="button" className="pcard__plus" aria-label={t('product.add')} onClick={quickAdd}>
-            <Icon name="plus" size={18} strokeWidth={2.8} />
-          </button>
-        )}
       </div>
       <button type="button" className="pcard__body" onClick={open} tabIndex={-1}>
         <span className="pcard__brand">{product.brand}</span>
@@ -87,13 +81,21 @@ function ProductCardBase({ product, eager }: Props) {
               <i key={`${c}${i}`} style={{ background: c }} />
             ))}
           </span>
-          {product.inStock && left < lowStock ? (
-            <span className="low">{t('stock.left', { n: left })}</span>
-          ) : old ? (
-            <span className="old">{formatMoney(old, region)}</span>
-          ) : null}
+          {product.inStock && left < lowStock && <span className="low">{t('stock.left', { n: left })}</span>}
         </span>
       </button>
+      {/* Narx rasm ostida — rasmni hech narsa to'smasin */}
+      <div className="pcard__foot">
+        <span className="pcard__price">
+          <b>{formatMoney(price, region)}</b>
+          {old && <span className="old">{formatMoney(old, region)}</span>}
+        </span>
+        {product.inStock && (
+          <button type="button" className="pcard__plus" aria-label={t('product.add')} onClick={quickAdd}>
+            <Icon name="plus" size={18} strokeWidth={2.8} />
+          </button>
+        )}
+      </div>
     </article>
   );
 }

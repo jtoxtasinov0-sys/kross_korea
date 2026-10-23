@@ -14,7 +14,7 @@ To'lov — faqat bank kartasiga o'tkazma, har bo'lim uchun alohida karta.
 | 3 | Burchaklar | pill tugmalar + 20–28 px kartalar |
 | 4 | Bosh sahifa tepasi | salomlashish + avatar, 3 ta shisha statistika kartasi + gradient chegirma kartasi |
 | 5 | Navigatsiya | suzuvchi shisha panel: 4 tugma + o'rtada gradient savat tugmasi |
-| 6 | Mahsulot kartasi | ichki yumaloq 1:1 rasm, narx rasm ustida shisha teg |
+| 6 | Mahsulot kartasi | to'liq enli 1:1 rasm (ustida faqat kichik belgilar va yurakcha), narx va "+" rasm ostida |
 | 7 | Kategoriyalar | aylanuvchi gradient halqali doiralar |
 | 8 | Savatga qo'shildi | savat tugmasi sakraydi + rangli zarrachalar |
 | 9 | Story | vertikal 9:16 mini-kartalar, gradient chegara |
