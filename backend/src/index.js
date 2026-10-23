@@ -8,9 +8,12 @@ import { registerBotRoutes, BOT_COMMANDS } from './routes/bot.routes.js';
 import { t } from './locales/index.js';
 import { logger } from './utils/logger.js';
 
-// Bot tavsiflari: t.me havolasi ulashilganda, profilda va bo'sh chatda ko'rinadi.
+// Bot nomi va tavsiflari: t.me havolasi ulashilganda (sarlavha + matn), profilda va bo'sh chatda ko'rinadi.
 // O'zbekcha — standart (til kodisiz), ruscha — "ru". Faqat o'zgargan bo'lsa yuboriladi.
 async function syncDescriptions() {
+  if ((await bot.api.getMyName()).name !== SHOP.name) {
+    await bot.api.setMyName(SHOP.name);
+  }
   for (const [lang, language_code] of [['uz', undefined], ['ru', 'ru']]) {
     const other = language_code ? { language_code } : {};
     const short = t(lang, 'botShort');

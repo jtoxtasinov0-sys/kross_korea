@@ -20,15 +20,17 @@ async function banner() {
     .toFile(path.join(config.assetsDir, 'banner.jpg'));
 }
 
-// Kvadrat belgi: qora fon, markazda logo. scale — belgi kvadrat enining qancha qismini egallaydi
-async function square(size, scale) {
-  const width = Math.round(size * scale);
+// Qora fon, markazda logo. scale — belgi kenglikning qancha qismini egallaydi
+async function framed(w, h, scale) {
+  const width = Math.round(w * scale);
   const mark = await sharp(SOURCE).extract(CONTENT).resize({ width }).toBuffer();
   const { height } = await sharp(mark).metadata();
-  return sharp({ create: { width: size, height: size, channels: 3, background: '#000' } }).composite([
-    { input: mark, left: Math.round((size - width) / 2), top: Math.round((size - height) / 2) },
+  return sharp({ create: { width: w, height: h, channels: 3, background: '#000' } }).composite([
+    { input: mark, left: Math.round((w - width) / 2), top: Math.round((h - height) / 2) },
   ]);
 }
+
+const square = (size, scale) => framed(size, size, scale);
 
 async function icons() {
   await fs.mkdir(PUBLIC, { recursive: true });
@@ -44,16 +46,20 @@ async function icons() {
   await (await square(640, 0.7)).png().toFile(path.join(BRAND, 'bot-avatar.png'));
 }
 
-// Havola ulashilganda chiqadigan rasm (Telegram, WhatsApp, Instagram) — 1200×630
+// Havola ulashilganda chiqadigan katta rasm (Telegram, WhatsApp, Instagram) — 1200×630,
+// toza qora fon va markazda KROSS logosi (burchak lentalari kesilib qolmasin)
 async function ogImage() {
-  await sharp(SOURCE)
-    .resize(1200, 630, { fit: 'cover' })
-    .jpeg({ quality: 90, mozjpeg: true })
+  await (await framed(1200, 630, 0.72))
+    .jpeg({ quality: 92, mozjpeg: true, chromaSubsampling: '4:4:4' })
     .toFile(path.join(PUBLIC, 'og.jpg'));
+  // BotFather → /newapp rasmi (640×360): t.me/kross_korea_bot/<nom> havolasi katta rasm bilan chiqadi
+  await (await framed(640, 360, 0.74))
+    .jpeg({ quality: 92, mozjpeg: true, chromaSubsampling: '4:4:4' })
+    .toFile(path.join(BRAND, 'miniapp-640x360.jpg'));
 }
 
 await fs.mkdir(config.assetsDir, { recursive: true });
 await banner();
 await icons();
 await ogImage();
-console.log('✅ banner.jpg, ikonkalar, og.jpg va bot-avatar.png tayyor');
+console.log('✅ banner.jpg, ikonkalar, og.jpg, miniapp-640x360.jpg va bot-avatar.png tayyor');

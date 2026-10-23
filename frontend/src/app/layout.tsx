@@ -20,9 +20,9 @@ const SITE_URL =
     : 'http://localhost:3000');
 
 const TITLE = 'KROSS KOREA — Koreyadan original krossovkalar';
-const DESCRIPTION =
-  "Nike, Adidas, New Balance, Puma — Koreyaning rasmiy do'konlaridan 100% original. O'zbekiston va Koreya bo'ylab yetkazib berish.";
-const OG_IMAGE = { url: '/images/og.jpg', width: 1200, height: 630, alt: 'KROSS KOREA — Original · Korea' };
+const DESCRIPTION = 'Koreyadan keltirilgan 100% original krossovkalar: Nike, Adidas, New Balance va Puma.';
+// ?v= — rasm yangilanganda messenjerlar eski nusxani keshdan olmasin
+const OG_IMAGE = { url: '/images/og.jpg?v=2', width: 1200, height: 630, alt: 'KROSS KOREA — Original · Korea' };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
