@@ -5,7 +5,24 @@ import { initSchema } from './database/migrate.js';
 import { bot, webAppUrl } from './core/bot.js';
 import { createServer, webhookSecret } from './core/server.js';
 import { registerBotRoutes, BOT_COMMANDS } from './routes/bot.routes.js';
+import { t } from './locales/index.js';
 import { logger } from './utils/logger.js';
+
+// Bot tavsiflari: t.me havolasi ulashilganda, profilda va bo'sh chatda ko'rinadi.
+// O'zbekcha — standart (til kodisiz), ruscha — "ru". Faqat o'zgargan bo'lsa yuboriladi.
+async function syncDescriptions() {
+  for (const [lang, language_code] of [['uz', undefined], ['ru', 'ru']]) {
+    const other = language_code ? { language_code } : {};
+    const short = t(lang, 'botShort');
+    const about = t(lang, 'botAbout');
+    if ((await bot.api.getMyShortDescription(other)).short_description !== short) {
+      await bot.api.setMyShortDescription(short, other);
+    }
+    if ((await bot.api.getMyDescription(other)).description !== about) {
+      await bot.api.setMyDescription(about, other);
+    }
+  }
+}
 
 async function launchBot() {
   if (!bot) return;
@@ -14,6 +31,7 @@ async function launchBot() {
 
   await bot.api.setMyCommands(BOT_COMMANDS.uz);
   await bot.api.setMyCommands(BOT_COMMANDS.ru, { language_code: 'ru' });
+  await syncDescriptions().catch((err) => logger.warn('Bot tavsifi yangilanmadi:', err.description || err.message));
   if (webAppUrl()) {
     await bot.api.setChatMenuButton({
       menu_button: { type: 'web_app', text: "🛍 Do'kon", web_app: { url: webAppUrl() } },
