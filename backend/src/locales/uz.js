@@ -9,6 +9,15 @@ export default {
     `💳 To'lov — bank kartasiga o'tkazma.\n` +
     (hasApp ? "Do'konni oching va o'z juftligingizni tanlang 👇" : "🛠 Do'kon shu yerda tez orada ochiladi!"),
 
+  // Bot profili: havola ulashilganda va profilda (≤120 belgi) / bo'sh chatda (≤512 belgi)
+  botShort: "Koreyadan 100% original krossovkalar 👟 Nike, Adidas, New Balance, Puma. O'zbekiston va Koreyaga yetkazib beramiz.",
+  botAbout:
+    "👟 KROSS KOREA — Koreyadagi rasmiy do'konlardan 100% original krossovkalar: Nike, Adidas, New Balance, Puma.\n\n" +
+    "🇺🇿 O'zbekistonga — narxlar $ da, 10–20 kunda\n" +
+    '🇰🇷 Koreya ichida — narxlar ₩ da, 택배 bilan tez\n\n' +
+    "💳 To'lov — bank kartasiga o'tkazma.\n" +
+    "«Start» ni bosing va do'konni oching 👇",
+
   btnShop: "🛍 Do'konni ochish",
   btnOrders: '📦 Buyurtmalarim',
   btnContact: '💬 Aloqa',
