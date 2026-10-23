@@ -18,7 +18,7 @@ export function Splash({ note }: { note?: string }) {
       <span className="splash__blob splash__blob--2" />
       <span className="splash__blob splash__blob--3" />
       <div className="splash__logo">
-        <img src="/images/icon-192.png" alt="" width={104} height={104} />
+        <img src="/images/logo.jpg" alt="" width={104} height={104} />
       </div>
       <p className="splash__mark" aria-hidden="true">
         <Letters word="KROSS" from={0} />

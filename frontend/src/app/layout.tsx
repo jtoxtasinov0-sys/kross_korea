@@ -12,10 +12,39 @@ const manrope = Manrope({
   display: 'swap',
 });
 
+// Havola ko'rinishi (og:image) to'liq manzil talab qiladi: Vercel'da loyiha domeni avtomatik olinadi
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
+
+const TITLE = 'KROSS KOREA — Koreyadan original krossovkalar';
+const DESCRIPTION =
+  "Nike, Adidas, New Balance, Puma — Koreyaning rasmiy do'konlaridan 100% original. O'zbekiston va Koreya bo'ylab yetkazib berish.";
+const OG_IMAGE = { url: '/images/og.jpg', width: 1200, height: 630, alt: 'KROSS KOREA — Original · Korea' };
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'KROSS KOREA',
-  description: "Koreyadan original krossovkalar — O'zbekiston va Koreya bo'ylab yetkazib berish",
+  description: DESCRIPTION,
   applicationName: 'KROSS KOREA',
+  // Havola ulashilganda (Telegram, WhatsApp, Instagram) rasm va ma'lumot chiqadi
+  openGraph: {
+    type: 'website',
+    siteName: 'KROSS KOREA',
+    title: TITLE,
+    description: DESCRIPTION,
+    url: '/',
+    locale: 'uz_UZ',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE.url],
+  },
   icons: {
     icon: [
       { url: '/images/icon-64.png', sizes: '64x64', type: 'image/png' },
