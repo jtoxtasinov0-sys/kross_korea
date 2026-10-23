@@ -127,6 +127,13 @@ export async function saveAddress(userId, region, a) {
   );
 }
 
+export async function countAll() {
+  const { rows } = await query(
+    `SELECT COUNT(*) AS total, COUNT(*) FILTER (WHERE telegram_id NOT LIKE 'web_%') AS telegram FROM users`,
+  );
+  return rows[0];
+}
+
 export async function countOrders(userId) {
   const { rows } = await query(
     `SELECT COUNT(*) FILTER (WHERE status <> 'CANCELLED') AS total,

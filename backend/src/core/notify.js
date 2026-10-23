@@ -1,6 +1,6 @@
 // Mijoz va adminlarga bot orqali xabarlar: yangi buyurtma, chek, holat o'zgarishi
-import { InputFile } from 'grammy';
-import { bot } from './bot.js';
+import { InlineKeyboard, InputFile } from 'grammy';
+import { adminPanelUrl, bot } from './bot.js';
 import { logger } from '../utils/logger.js';
 import { money, escapeHtml } from '../utils/format.js';
 import { t, statusText } from '../locales/index.js';
@@ -82,9 +82,11 @@ export async function orderCreated(order, user) {
     ),
   );
 
+  const panel = await adminPanelUrl();
   await eachAdmin((chatId) =>
     bot.api.sendMessage(chatId, `🆕 <b>Yangi buyurtma</b>\n${adminSummary(order, user)}\n\n${statusText('uz', order.status)}`, {
       parse_mode: 'HTML',
+      reply_markup: panel ? new InlineKeyboard().webApp('🗂 Admin panelni ochish', panel) : undefined,
     }),
   );
 }

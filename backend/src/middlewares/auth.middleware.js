@@ -1,7 +1,9 @@
 // Foydalanuvchini aniqlash: Telegram initData (imzo tekshiriladi) yoki brauzer mehmoni
 import { config } from '../config/default.js';
 import { verifyInitData } from '../utils/telegramAuth.js';
+import { passwordStamp, verifyToken } from '../utils/token.js';
 import * as User from '../models/User.js';
+import * as Setting from '../models/Setting.js';
 import { HttpError } from './error.middleware.js';
 
 // Tekshirilgan initData qisqa muddat eslab qolinadi — har so'rovda bazaga yozilmaydi
@@ -51,6 +53,28 @@ export async function telegramAuth(req, res, next) {
   }
 
   throw new HttpError(401, 'auth');
+}
+
+/**
+ * Admin API himoyasi: Authorization: Bearer <token>.
+ * Parol bilan olingan token parol o'zgarsa bekor bo'ladi; Telegram tokeni — admin huquqi olib tashlansa.
+ */
+export async function requireAdmin(req, res, next) {
+  const token = (req.get('authorization') || '').replace(/^Bearer\s+/i, '');
+  const payload = verifyToken(token, config.jwtSecret);
+  if (!payload) throw new HttpError(401, 'admin_auth');
+
+  if (payload.via === 'password') {
+    const settings = await Setting.get();
+    const password = settings.panel_password || config.adminPassword;
+    if (!password || payload.pv !== passwordStamp(password)) throw new HttpError(401, 'admin_auth');
+  } else {
+    const user = await User.findById(payload.uid);
+    if (!user?.isAdmin) throw new HttpError(401, 'admin_auth');
+    req.adminUser = user;
+  }
+  req.admin = payload;
+  return next();
 }
 
 /** Foydalanuvchi ma'lumoti o'zgarganda sessiya keshini yangilash */

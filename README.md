@@ -48,8 +48,8 @@ kross_korea/
 │   └── scripts/             ikonkalar, sinov skriptlari
 ├── frontend/                Next.js (App Router) + TypeScript + Zustand — Mini App
 │   └── src/
-│       ├── app/             layout, sahifa, PWA manifest
-│       ├── components/      ui/ · features/ (ekranlar) · layout/
+│       ├── app/             layout, sahifa, admin/ (panel), PWA manifest
+│       ├── components/      ui/ · features/ (ekranlar, admin/) · layout/
 │       ├── hooks/           useTelegram, useCart...
 │       ├── lib/             api, i18n (uz/ru), utils
 │       ├── providers/       TelegramProvider
@@ -71,6 +71,7 @@ kross_korea/
    npm run db:seed
    npm run dev
    ```
+   `npm run dev` faqat `src/` dagi o'zgarishlarda serverni qayta ishga tushiradi.
 2. **Frontend** (port 3000):
    ```bash
    cd frontend
@@ -83,6 +84,30 @@ kross_korea/
 
 Botga yozing: `/admin PAROL` — parol `backend/.env` dagi `ADMIN_PASSWORD`.
 Shundan keyin yangi buyurtmalar va cheklar sizga keladi, chek ostidagi **✅ Tasdiqlash** ishlaydi.
+
+## Admin panel
+
+Manzil: **`/admin`** (kompyuterda: http://localhost:3000/admin).
+
+- **Kirish:** brauzerda — parol bilan (5 marta xato → 15 daqiqa blok). Telegram ichida (`/panel` buyrug'i
+  yoki yangi buyurtma xabaridagi tugma) — parolsiz, faqat adminlar uchun. `/panel` tugmasi do'kon internetga
+  chiqarilgach (https manzil) ishlaydi.
+- **Boshqaruv:** kutilayotgan buyurtmalar, kelgan cheklar, tushum ($ va ₩ alohida), mijozlar,
+  eng ko'p sotilganlar, tugayotgan zaxira. Karta test qiymatda bo'lsa — ogohlantirish.
+- **Buyurtmalar:** holat va bo'lim filtri, qidiruv (raqam, ism, telefon, @username), har 20 soniyada yangilanadi.
+  Buyurtma oynasida: mijoz, manzil (nusxalash), mahsulotlar, chek rasmi, kuzatuv raqami, admin izohi.
+  **Tasdiqlash → Jo'natildi → Yetkazildi** — har birida mijozga bot orqali avtomatik xabar.
+  Bekor qilinsa zaxira qaytadi. Saytdan berilgan buyurtmada "telefon qiling" ogohlantirishi chiqadi.
+- **Mahsulotlar:** yaratish, tahrirlash, o'chirish (ikki bosqichli tasdiq). Rasmlar: bir nechtasini yuklash,
+  tartiblash, asosiy qilish, havola qo'shish. Nom va rang uz/ru, kategoriya, narx `$` va `₩` (eski narx bilan
+  chegirma foizi), o'lchamlar va zaxira ("240–285 mm", "Hammasiga N ta" tugmalari), tavsif, Faol / NEW.
+- **Ombor:** barcha o'lchamlar qoldig'i bitta ro'yxatda, +/− yoki qo'lda kiritish, "kam qolgan" / "tugagan"
+  filtrlari, o'zgarganlar birdan saqlanadi. "Mijozga qoldiq soni ko'rinsin" kaliti.
+- **Sozlamalar:** har bo'lim uchun alohida karta (bank, raqam, qabul qiluvchi), oldindan to'lov %, yetkazish
+  narxi va muddati, so'm kursi; do'kon ochiq/yopiq, aloqa ma'lumotlari, "Biz haqimizda"; panel paroli
+  (o'zgarsa boshqa qurilmalardagi eski kirishlar bekor bo'ladi), mini ilova va panel manzillari.
+
+Har qanday o'zgarish mijozlar ilovasida darhol ko'rinadi.
 
 ## Buyurtma jarayoni
 
@@ -104,8 +129,11 @@ Shundan keyin yangi buyurtmalar va cheklar sizga keladi, chek ostidagi **✅ Tas
 
 - ✅ **1-bosqich:** tuzilma, baza, katalog (53 mahsulot), mini ilova (bo'lim tanlash, katalog, savat,
   rasmiylashtirish, to'lov, buyurtmalar, profil, story), bot (menyu, til, chek, tasdiqlash).
-- ⏳ **2-bosqich:** admin panel — buyurtmalar, mahsulotlar, ombor, karta rekvizitlari, sozlamalar.
-- ⏳ **3-bosqich:** deploy (Vercel + backend server), "Ilovani o'rnatish", rassilka, manzilni qayta so'rash.
+- ✅ **2-bosqich:** admin panel — boshqaruv, buyurtmalar, mahsulotlar, ombor, karta rekvizitlari, sozlamalar;
+  botda `/panel`.
+- ⏳ **3-bosqich:** deploy (Vercel + backend server), "Ilovani o'rnatish", story va kategoriyalarni paneldan
+  boshqarish, mijozlar ro'yxati, rassilka, manzilni qayta so'rash.
 
-> ⚠️ Karta raqamlari hozircha **test qiymatlar** (`8600 1234 5678 9012`, `9430 1234 5678 9012`).
-> O'lcham va zaxira (har o'lchamdan 3 ta) — taxminiy, admin panel tayyor bo'lgach to'g'rilanadi.
+> ⚠️ Karta raqamlari hozircha **test qiymatlar** (`8600 1234 5678 9012`, `9430 1234 5678 9012`) —
+> admin panel → Sozlamalar'da haqiqiysini kiriting. O'lcham va zaxira (har o'lchamdan 3 ta) taxminiy —
+> admin panel → Ombor'da to'g'rilang.

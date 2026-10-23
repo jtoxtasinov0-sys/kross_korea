@@ -33,6 +33,19 @@ export async function listActive() {
   return rows.map(map);
 }
 
+export async function listAll() {
+  const { rows } = await query(
+    `SELECT c.*, (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id) AS count
+       FROM categories c ORDER BY c.sort_order, c.id`,
+  );
+  return rows.map((r) => ({ ...map(r), isActive: r.is_active, count: r.count }));
+}
+
+export async function exists(id) {
+  const { rows } = await query('SELECT 1 FROM categories WHERE id = $1', [id]);
+  return rows.length > 0;
+}
+
 export async function upsert(c) {
   const { rows } = await query(
     `INSERT INTO categories (slug, name_uz, name_ru, emoji, note_uz, note_ru, sort_order)

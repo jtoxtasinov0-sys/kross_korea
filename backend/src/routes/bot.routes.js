@@ -10,6 +10,7 @@ export function registerBotRoutes(bot) {
 
   bot.command('start', start.onStart);
   bot.command('admin', adminBot.onAdmin);
+  bot.command('panel', adminBot.onPanel);
   bot.command('id', adminBot.onId);
 
   bot.callbackQuery(/^lang:(uz|ru)$/, start.onLang);

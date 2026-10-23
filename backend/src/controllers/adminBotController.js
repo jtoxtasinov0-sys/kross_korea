@@ -1,5 +1,7 @@
-// Bot: admin buyruqlari — /admin PAROL (o'zini admin qilish), /id
+// Bot: admin buyruqlari — /admin PAROL (o'zini admin qilish), /panel, /id
+import { InlineKeyboard } from 'grammy';
 import { config } from '../config/default.js';
+import { adminPanelUrl } from '../core/bot.js';
 import * as User from '../models/User.js';
 import * as Setting from '../models/Setting.js';
 
@@ -25,7 +27,20 @@ export async function onAdmin(ctx) {
   }
   attempts.delete(key);
   await User.update(ctx.user.id, { isAdmin: true });
-  return ctx.reply('✅ Siz endi adminsiz. Yangi buyurtmalar va cheklar shu chatga keladi.');
+  return ctx.reply('✅ Siz endi adminsiz. Yangi buyurtmalar va cheklar shu chatga keladi.\nAdmin panel: /panel');
+}
+
+/** /panel — admin panelni Telegram ichida ochish tugmasi */
+export async function onPanel(ctx) {
+  if (!ctx.user?.isAdmin) return ctx.reply("🔒 Bu buyruq faqat adminlar uchun. Avval: /admin PAROL");
+  const url = await adminPanelUrl();
+  if (!url) {
+    return ctx.reply(
+      "🛠 Admin panel manzili hali yo'q — do'kon internetga chiqarilgach (deploy) shu yerda ochiladi.\n" +
+        'Hozircha kompyuterda: http://localhost:3000/admin',
+    );
+  }
+  return ctx.reply('🗂 Admin panel', { reply_markup: new InlineKeyboard().webApp('Panelni ochish', url) });
 }
 
 export function onId(ctx) {

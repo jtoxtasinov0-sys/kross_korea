@@ -104,6 +104,61 @@ export function regionRules(s, region) {
   return toPublic(s).regions[region === 'kr' ? 'kr' : 'uz'];
 }
 
+// Admin tahrirlaydigan maydonlar: camelCase → ustun
+export const EDITABLE = {
+  shopName: 'shop_name',
+  phone: 'phone',
+  supportUsername: 'support_username',
+  instagramUrl: 'instagram_url',
+  channelUrl: 'channel_url',
+  payUzBank: 'pay_uz_bank',
+  payUzCard: 'pay_uz_card',
+  payUzHolder: 'pay_uz_holder',
+  prepayUz: 'prepay_uz',
+  deliveryUzFee: 'delivery_uz_fee',
+  deliveryUzDays: 'delivery_uz_days',
+  uzsRate: 'uzs_rate',
+  payKrBank: 'pay_kr_bank',
+  payKrCard: 'pay_kr_card',
+  payKrHolder: 'pay_kr_holder',
+  prepayKr: 'prepay_kr',
+  deliveryKrFee: 'delivery_kr_fee',
+  deliveryKrFreeFrom: 'delivery_kr_free_from',
+  deliveryKrDays: 'delivery_kr_days',
+  webAppUrl: 'web_app_url',
+  adminUrl: 'admin_url',
+  panelPassword: 'panel_password',
+  aboutUz: 'about_uz',
+  aboutRu: 'about_ru',
+  isOpen: 'is_open',
+  stockVisible: 'stock_visible',
+};
+
+/** Admin uchun to'liq ko'rinish (parol ham) */
+export function toAdmin(s) {
+  const out = {};
+  for (const [key, col] of Object.entries(EDITABLE)) out[key] = s[col];
+  out.testCards = {
+    uz: s.pay_uz_card === TEST_CARDS.uz.card,
+    kr: s.pay_kr_card === TEST_CARDS.kr.card,
+  };
+  out.updatedAt = s.updated_at;
+  return out;
+}
+
+export async function update(fields) {
+  const sets = [];
+  const values = [];
+  for (const [key, col] of Object.entries(EDITABLE)) {
+    if (fields[key] === undefined) continue;
+    values.push(fields[key]);
+    sets.push(`${col} = $${values.length}`);
+  }
+  if (sets.length) await query(`UPDATE settings SET ${sets.join(', ')}, updated_at = now() WHERE id = 1`, values);
+  invalidate();
+  return get();
+}
+
 export async function updateAbout(aboutUz, aboutRu) {
   await query('UPDATE settings SET about_uz = $1, about_ru = $2, updated_at = now() WHERE id = 1', [aboutUz, aboutRu]);
   invalidate();

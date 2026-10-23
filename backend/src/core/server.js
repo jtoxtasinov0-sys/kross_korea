@@ -5,6 +5,7 @@ import { webhookCallback } from 'grammy';
 import { config, SHOP } from '../config/default.js';
 import { bot } from './bot.js';
 import apiRoutes from '../routes/api.routes.js';
+import adminRoutes from '../routes/admin.routes.js';
 import filesRoutes from '../routes/files.routes.js';
 import { notFound, errorHandler } from '../middlewares/error.middleware.js';
 
@@ -21,6 +22,8 @@ export function createServer() {
 
   app.get('/', (req, res) => res.json({ ok: true, name: SHOP.name }));
   app.use('/uploads', filesRoutes);
+  // Admin marshrutlari mijoz API'sidan oldin — u yerdagi Telegram tekshiruvi adminni to'smasin
+  app.use('/api/admin', adminRoutes);
   app.use('/api', apiRoutes);
 
   if (bot && config.botMode === 'webhook') {

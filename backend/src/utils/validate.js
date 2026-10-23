@@ -8,6 +8,23 @@ export function cleanText(value, max = 200) {
     .slice(0, max);
 }
 
+/** Ko'p qatorli matn: har qator tozalanadi, bo'sh qatorlar tashlanadi */
+export function cleanLines(value, max = 2000) {
+  return String(value ?? '')
+    .split(/\r?\n/)
+    .map((line) => cleanText(line, 300))
+    .filter(Boolean)
+    .join('\n')
+    .slice(0, max);
+}
+
+/** Butun son chegarada, aks holda null */
+export function intInRange(value, min, max) {
+  if (value === '' || value === null || value === undefined) return null;
+  const n = Number(value);
+  return Number.isInteger(n) && n >= min && n <= max ? n : null;
+}
+
 /**
  * Telefonni region formatiga keltiradi, noto'g'ri bo'lsa null.
  * kr → 010-1234-5678     uz → +998 90 123 45 67
